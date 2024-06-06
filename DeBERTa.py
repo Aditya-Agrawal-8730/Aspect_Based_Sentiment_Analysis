@@ -201,7 +201,7 @@ def deberta_main(df_og, aspects_list, aspect_categories):
                     df_og.loc[i,'Aspect_Category_'+str(index)] += ", " + a
                     df_og.loc[i,'Aspect_Category_'+str(index)+'_Sentiment (1-Negative, 2-Neutral, 3-Positive)'] += ", " + str(cat)
                     df_og.loc[i,'Aspect_Category_'+str(index)+'_Scores'] += ", " + str(rest)
-                          
+
         rest, cat = get_aspect_overall(example)
         df_og.loc[i,"Overall Sentiment Score"] = str(rest)
         df_og.loc[i,"Overall Sentiment (1-Negative, 2-Neutral, 3-Positive)"] = str(cat)
@@ -210,6 +210,8 @@ def deberta_main(df_og, aspects_list, aspect_categories):
             print("Progress = "+str(i)+"/"+str(length))
     
     print(str(length) + " rows processed. Completed.")
+
+    return df_og
 
 def dict_to_list(d):
     
@@ -256,7 +258,7 @@ def combination_deberta(confidence):
     
 def deberta_results(df_deberta, last_column_number, number_aspect_cats):
 
-    df_deberta_2 = fixing_deberta(df_deberta)
+    df_deberta_2 = fixing_deberta(df_deberta, last_column_number)
 
     df_1 = df_deberta_2.iloc[:,last_column_number:last_column_number+3]
     df_1 = df_1.dropna()
