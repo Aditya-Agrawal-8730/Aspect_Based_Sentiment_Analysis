@@ -1,9 +1,10 @@
 pandas
 numpy
 ftfy
-torch
+torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 nltk
 transformers
 scipy
 emoji
 pyabsa == 1.16.27
+protobuf
