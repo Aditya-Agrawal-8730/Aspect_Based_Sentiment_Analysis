@@ -1,5 +1,4 @@
 import pandas as pd
-import csv
 
 from emoji import demojize
 from nltk.tokenize import TweetTokenizer

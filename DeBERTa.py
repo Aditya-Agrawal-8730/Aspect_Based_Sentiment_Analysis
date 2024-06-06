@@ -220,6 +220,9 @@ def dict_to_list(d):
     return l
 
 def fixing_deberta(df, last_column_number):
+
+    df.replace('', np.nan, inplace=True)
+
     for i in range(df.shape[0]):
         for j in range(last_column_number,df.shape[1]-2,3):
             try:
@@ -264,6 +267,8 @@ def deberta_results(df_deberta, last_column_number, number_aspect_cats):
     df_1 = df_1.dropna()
     df_1["Aspect_Category_1"] = "Category_1"
 
+    df_1.columns = ['Aspect_Categories', 'Aspect_Scores', 'Aspect_Sentiments (1-Negative, 2-Neutral, 3-Positive)']
+
     for i in range(1,number_aspect_cats-1):
 
         df_2 = df_deberta_2.iloc[:,last_column_number+i*3:last_column_number+3+i*3]
@@ -273,14 +278,14 @@ def deberta_results(df_deberta, last_column_number, number_aspect_cats):
         
         df_2 = df_2.dropna()
         
-        df_2["Aspect_Category_1"] = "Category_"+str(i+1)
+        df_2["Aspect_Categories"] = "Category_"+str(i+1)
         
         df_1 = pd.concat([df_1, df_2], ignore_index=True)
 
-    print(df_1["Aspect_Category_1"].value_counts())
-    print(df_1["Aspect_Category_1_Sentiment (1-Negative, 2-Neutral, 3-Positive)"].value_counts())
+    print(df_1["Aspect_Categories"].value_counts())
+    print(df_1["Aspect_Sentiments (1-Negative, 2-Neutral, 3-Positive)"].value_counts())
 
-    df_3 = df_1.groupby(by=["Aspect_Category_1","Aspect_Category_1_Sentiment (1-Negative, 2-Neutral, 3-Positive)"]).agg(['count','mean'])
+    df_3 = df_1.groupby(by=["Aspect_Categories","Aspect_Sentiments (1-Negative, 2-Neutral, 3-Positive)"]).agg(['count','mean'])
 
     return df_deberta_2, df_3
 

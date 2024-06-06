@@ -6,5 +6,4 @@ nltk
 transformers
 scipy
 emoji
-pyabsa == 1.16.27
 protobuf
