@@ -163,3 +163,5 @@ cython_debug/
 
 # Folders
 cache_huggingface_transformers/
+output_files/
+csv_files/

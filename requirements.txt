@@ -7,13 +7,3 @@ transformers
 scipy
 emoji
 pyabsa == 1.16.27
-
-
-pip install -q pandas numpy
-pip install -q ftfy
-pip install -q emoji
-pip install -q nltk
-pip install -q torch
-pip install -q pyabsa==1.16.27
-pip install -q transformers
-pip install -q scipy

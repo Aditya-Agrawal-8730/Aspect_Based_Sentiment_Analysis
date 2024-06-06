@@ -182,9 +182,6 @@ def deberta_main(df_og, aspects_list, aspect_categories):
     for i in range(length):
     
         example = df_og.loc[i,"processed_text"]
-        
-        if i<=202: #remove
-            print(i,". ",example,"\n") #remove
             
         text = example.lower()
         txt1 = word_tokenize(text)
@@ -204,20 +201,10 @@ def deberta_main(df_og, aspects_list, aspect_categories):
                     df_og.loc[i,'Aspect_Category_'+str(index)] += ", " + a
                     df_og.loc[i,'Aspect_Category_'+str(index)+'_Sentiment (1-Negative, 2-Neutral, 3-Positive)'] += ", " + str(cat)
                     df_og.loc[i,'Aspect_Category_'+str(index)+'_Scores'] += ", " + str(rest)
-
-                if i<=202: #remove
-                    print(a,cat,rest) #remove
-                    print(index) #remove
-                    print(df_og.loc[i,'Aspect_Category_'+str(index)]) #remove
-                    
+                          
         rest, cat = get_aspect_overall(example)
         df_og.loc[i,"Overall Sentiment Score"] = str(rest)
         df_og.loc[i,"Overall Sentiment (1-Negative, 2-Neutral, 3-Positive)"] = str(cat)
-        
-        if i<=202: #remove
-            print("\n\n") #remove
-        else: #remove
-            print(i) #remove
 
         if i%100==0:
             print("Progress = "+str(i)+"/"+str(length))
